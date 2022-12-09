@@ -8,7 +8,12 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const documents = require('./routes/documents');
+const login = require('./routes/login');
+const register = require('./routes/register');
 const { log } = require("console");
+require('dotenv').config()
+console.log(process.env.JWT_SECRET)
+console.log(typeof(process.env.JWT_SECRET))
 
 
 const httpServer = require("http").createServer(app);
@@ -47,6 +52,8 @@ app.use((req, res, next) => {
 
 app.use('/', index);
 app.use('/documents', documents);
+app.use('/login', login);
+app.use('/register', register);
 
 
 // don't show the log when it is test
